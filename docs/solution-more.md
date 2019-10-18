@@ -98,9 +98,9 @@ Enable a new language package in Opencart have the following steps(e.g Chinese l
    catalog->language->zh-cn to ```/data/wwwroot/opencart/catalog/language```
    ```
 4. Log in OpenCart, go to【System】>【localization】>【languages】, add new language and configure it
-	![websoft9](http://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-1-websoft9.png)
+	![websoft9](https://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-1-websoft9.png)
 
 5. Enable language both for catalog and admin: open 【System】>【Settings】, the 【Language】 for catalog, 【Administration Language】for admin
-	   ![websoft9](http://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-2-websoft9.png)
+	   ![websoft9](https://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-2-websoft9.png)
 
 6. Refresh OpenCart, display the new language

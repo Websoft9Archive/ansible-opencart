@@ -97,10 +97,10 @@ OpenCart 提供了大量的扩展发布在 Marketplace 上，下面是具体的�
    catalog->language->zh-cn 文件夹 上传到 ```/data/wwwroot/opencart/catalog/language``` 目录下
    ```
 4. 登录 OpenCart，打开【System】>【localization】>【languages】，增加一个语言并填写配置信息
-	![websoft9](http://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-1-websoft9.png)
+	![websoft9](https://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-1-websoft9.png)
 
 5. 店铺前后台分别选择所需的语言：【System】>【Settings】，其中Language 为前台默认语言，Administration Language 为后台默认语言
-	   ![websoft9](http://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-2-websoft9.png)
+	   ![websoft9](https://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-2-websoft9.png)
 
 6. 刷新前后台页面，系统显示新的语言
 

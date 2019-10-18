@@ -16,7 +16,7 @@
    SMTP password: #wwBJ8    //此密码不是邮箱密码，是需要通过163邮箱后台设置去获取的授权码
    ```
 2. 登录到 OpenCart 后台，完成 SMTP 参数设置  
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-smtp-websoft9.png)
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-smtp-websoft9.png)
   
    - 输入提供SMTP服务的服务器地址，其中的 ssl://  一定不能省略
    - 务必准确的填写你的 SMTP 参数

@@ -31,11 +31,11 @@ apt update && apt upgrade -y
 2. [下载](https://www.opencart.com/index.php?route=cms/download)最新的 OpenCart 程序
 3. 使用 SFTP 登录服务器，上传新的代码，覆盖原来的文件
 4. 将本地备份的 OpenCart 根目录下的 `config.php` 文件和 `admin/config.php` 重新上传到服务器
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update001-websoft9.png)  
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update002-websoft9.png) 
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update001-websoft9.png)  
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update002-websoft9.png) 
 5. 浏览器访问：*http://域名/install* 开始升级
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update003-websoft9.png)  
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update003-websoft9.png)  
 6. 升级成功提示 
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update004-websoft9.png)  
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update004-websoft9.png)  
 
-参考官方升级文档：[Upgrading](http://docs.opencart.com/en-gb/upgrading/)
+参考官方升级文档：[Upgrading](https://docs.opencart.com/en-gb/upgrading/)

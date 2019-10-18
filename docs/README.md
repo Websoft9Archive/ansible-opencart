@@ -12,7 +12,7 @@ This documentation is provided by [Websoft9](https://www.websoft9.com/), it can 
 
 ## Demo
 
-Visit [OpenCart Official Online Demo](http://demo.opencart.com) now
+Visit [OpenCart Official Online Demo](https://demo.opencart.com) now
 
 ## Improve
 

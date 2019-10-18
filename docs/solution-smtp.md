@@ -16,7 +16,7 @@ Follow is the sample using **SendGrid's SMTP Service** to configure sending mail
    SMTP password: #fdfwwBJ8f    
    ```
 2. Log in OpenCart console as administrator, configure SMTP  
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/opencart-smtp-websoft9.png)
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/opencart-smtp-websoft9.png)
   
    - SMTP Hostname: tls:// or ssl:// is need
    - Make sure you have input correct SMTP items

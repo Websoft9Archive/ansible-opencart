@@ -38,11 +38,11 @@ The following upgrade steps are a simplification of the official upgrade documen
 2. [Download](https://www.opencart.com/index.php?route=cms/download) the latest version of OpenCart and unzip it
 3. Use SFTP to log in Server, upload latest OpenCart source code and cover the old
 4. Upload the `config.php` and `admin/config.php` in the OpenCart root directory of backup to Server
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update001-websoft9.png)  
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update002-websoft9.png) 
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update001-websoft9.png)  
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update002-websoft9.png) 
 5. Visit *http://域名/install* to start upgrade
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update003-websoft9.png)  
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update003-websoft9.png)  
 6. Upgrading successfully
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update004-websoft9.png)  
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update004-websoft9.png)  
 
-> More upgrade details please refer to: [OpenCart Upgrading](http://docs.opencart.com/en-gb/upgrading/)
+> More upgrade details please refer to: [OpenCart Upgrading](https://docs.opencart.com/en-gb/upgrading/)

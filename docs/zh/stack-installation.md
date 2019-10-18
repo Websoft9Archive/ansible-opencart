@@ -12,13 +12,13 @@
 
 1. 使用本地电脑的 Chrome 或 Firefox 浏览器访问网址：*http://域名* 或 *http://Internet IP*, 就进入引导首页
 2. 进入安装界面，同意安装协议
-   ![oc1](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/oc1.png)  
+   ![oc1](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/oc1.png)  
 3. 通过环境检测后，进入下一步  
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/oc2.png)
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/oc2.png)
 3. 填写数据库信息（[不知道账号密码？](/zh/stack-accounts.html#mysql)）并设置后台管理账号
-   ![oc1](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/oc3.png)
+   ![oc1](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/oc3.png)
 4. 安装成功后，系统提示“删除安装目录”
-   ![oc1](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/oc4.png)
+   ![oc1](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/oc4.png)
 5. 请记得通过SFTP工具删除安装目录（*/data/wwwroot/opencart/install*）
 6. 安装成功，可以分别体验商城前台和后台
 

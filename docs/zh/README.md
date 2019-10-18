@@ -14,7 +14,7 @@ home: false
 
 ## 演示
 
-OpenCart 官网提供了演示环境，您可以直接访问演示地址体验：[http://demo.opencart.com](http://demo.opencart.com)
+OpenCart 官网提供了演示环境，您可以直接访问演示地址体验：[https://demo.opencart.com](https://demo.opencart.com)
 
 > 免责说明：此处仅提供OpenCart官方的演示地址，不保证与Websoft9镜像功能完全一致，若演示过程中若需要填写个人资料、获取Cookie、显示广告等，这些都是官方行为，由此产生的安全问题与我司无关。若您在演示中进行了付费，即表明您愿意接受官方提供的付费服务，由此产生的可能存在的商业纠纷与我们司无关。
 
