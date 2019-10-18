@@ -17,83 +17,113 @@ OpenCart 域名绑定操作步骤：
 
      <VirtualHost *:80>
      ServerName  www.mydomain.com # 修改成您的实际域名
-     DocumentRoot "/data/wwwroot/prestashop"
+     DocumentRoot "/data/wwwroot/opencart"
      ...
      
    #### OpenCart(LNMP) bind domain #### 
 
      server {
       listen 80;
-      server_name prestashop.example.com; # 修改成您的实际域名
+      server_name opencart.example.com; # 修改成您的实际域名
      ...
 
    ```
 3. 保存配置文件，[重启服务](/zh/admin-services.html#apache)
 
-## OpenCart 维护模式
-
-登录 OpenCart 后台，打开：【Shop Parameters】>【General】>【Maintenance】，设置维护模式
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-mantmode-websoft9.png)
-
-
 ## OpenCart 更换域名
 
 如果 OpenCart 需要更换域名，具体操作如下：
 
-1. 完成域名解析和域名绑定
-2. 将 OpenCart 设置为维护模式
-3. 打开 OpenCart 的配置文件（[路径参考](/zh/stack-components.html#prestashop)），修改其中与域名有关的内容
-4. 登录 OpenCart 后台，打开：【Shop Parameters】>【Traffic&SEO】，修改它
-  ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-seturl-websoft9.png)
+1. 完成新的 **域名解析和域名绑定**
+2. 修改 OpenCart 根目录下的配置文件 `config.php`
+   ```
+   // HTTP
+   define('HTTP_SERVER', 'http://example.com/');
+   // HTTPS
+   define('HTTPS_SERVER', 'https://example.com/');
+   ```
+3. 修改 OpenCart 后台目录下的配置文件 `admin/config.php`
+   ```
+   // HTTP
+   define('HTTP_SERVER', 'http://www.example.com/admin/');
+   define('HTTP_CATALOG', 'http://www.example.com/');
+   // HTTPS
+   define('HTTPS_SERVER', 'http://www.example.com/admin/');
+   define('HTTPS_CATALOG', 'http://www.example.com/');
+   ```
+3. [重启 PHP-FPM 服务](/zh/admin-services.html#php-fpm)后生效
 
-## OpenCart 导入数据
+## OpenCart vQmod
 
-登录 OpenCart 后台，打开：【Advanced Parameters】>【Import】，导入所需的数据
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-importdb-websoft9.png)
+Opencart 2.0 使用vQmod机制安装扩展，需提前安装并启用vQmod，具体如下：
+
+1. [下载vQmod](https://github.com/vqmod/vqmod)
+2. Go to Extensions > Installer，上传下载的 vqmod.zip 文件
+3. Go to Extensions > Extensions > Modules > Integrated VQmod to install and then edit to enable this module
 
 
-## OpenCart Modules
+## OpenCart 重置密码
 
-Modules 是 OpenCart 功能扩展，Modules 可以即插即用
+如果忘记了管理员密码，又没有配置好 SMTP 导致无法通过邮箱找回密码，怎么办？
 
-1. 登录 OpenCart 后台，
-2. 依次打开：【Modules】>【Module Catalog】，找到所需的插件，点击【Install】开始安装
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-installmd-websoft9.png)
-3. 依次打开：【Modules】>【Module Manager】，找到所需的插件，点击【Upgrade】即可在线升级
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-upgrademodules-websoft9.png)
+1. 首先使用 [phpMyAdmin 登录 MySQL](/zh/admin-mysql.html)
+2. 找到您的 Opencart 数据库，打开SQL命令操作窗口
+3. 运行如下命令
+   ```
+   //下面是将用户名 admin 的后台管理员密码重置为 123456，请根据实际情况调整命令
+   UPDATE oc\_user SET password = md5('123456'), salt = '' WHERE username = 'admin';
+   ```
 
-## OpenCart 连接 Marketplace
+## OpenCart Extension
 
-除了系统提供 Modules 之外，更多的 Modules 都是通过 Marketplace 发布，因此需要将你的 OpenCart 连接到 Marketplace，便可以在线使用上面的资源。
+OpenCart 提供了大量的扩展发布在 Marketplace 上，下面是具体的安装扩展步骤：
 
-具体操作步骤参考：[连接 Marketplace](/zh/stack-installation.html#连接-prestashop-marketplace)
-
+1. 在 Marketplace 上下载扩展
+2. 登录 OpenCart 后台，依次打开：【Extensions】>【Installer】
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/opencart-installex-websoft9.png)
+3. 上传扩展文件
+4. 等待安装完成
 
 
 ## OpenCart 语言包
 
-OpenCart的多语言支持非常的成熟，系统在后台内置一套多语言体系，只需要选择对应的语言，在线导入到您的 OpenCart 系统即可。
+在Opencart中增加一个新的语言（以中文包为例），主要有三个步骤：
 
-### 导入语言
+1. 到 [OpenCart Marketplace](https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=19126&filter_category_id=2&page=8)下载中文语言包（请注意版本）；
+2. 将下载好的语言包解压出来，会得到一个名为 upload 的文件夹，内有 admin 和 catalog 两个文件夹分别为后台和前台的文件夹；
+3. 使用 SFTP 软件将前后台中文包分别上传到服务器：
+   ```
+   admin->language->zh_cn 文件夹 上传到  ```/data/wwwroot/opencart/admin/language``` 目录下
+   catalog->language->zh-cn 文件夹 上传到 ```/data/wwwroot/opencart/catalog/language``` 目录下
+   ```
+4. 登录 OpenCart，打开【System】>【localization】>【languages】，增加一个语言并填写配置信息
+	![websoft9](http://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-1-websoft9.png)
 
-1. 登录OpenCart后台，依次打开：【国际】>【本地化】，进入设置界面
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-setlanguage-websoft9.png)
-2. 选择一个语言包，点击本项之右下角【上传】图标，完成在线导入
-3. 选择【语言】选项卡，我们就可以看到成功导入的语言包
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-alllanguage-websoft9.png) 
+5. 店铺前后台分别选择所需的语言：【System】>【Settings】，其中Language 为前台默认语言，Administration Language 为后台默认语言
+	   ![websoft9](http://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-2-websoft9.png)
 
-> 每次导入一个新的语言包，系统会自动为此语言生成一个伪静态规则。如果您的某个语言的伪静态设置出现问题导致了 Redirect（重定向），可以删除这个语言，然后重新导入一次即可。
+6. 刷新前后台页面，系统显示新的语言
 
-### 删除语言
+## OpenCart 目录说明
 
-1. 登录OpenCart后台，依次打开：【国际】>【本地化】>【语言】，编辑您需要的语言
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-dellanguage001-websoft9.png)
-2. 将语言的状态修改为“否”，然后保存
-3. 回到【语言】选项开，找到已经打叉的语言，删除之即可
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-dellanguage002-websoft9.png)
+```
+|–.htaccess 网址改写控制档(SEO urls)
+|–config.php 系统配置文件
+|–php.ini php 设定
+|–download 下载类商品存放位置(由程控,非直接复制档案至此)
+|–image 图片文件
+|–system 框架核心
 
-## OpenCart API (Web Service)
+|–admin 后台
+|–config.php 系统配置文件
+|–|–M: adminmodel
+|–|–V: adminview
+|–|–C: admincontroller
+|–|–L: adminlanguage
 
-OpenCart enables merchants to give third-party tools access to their shop's database through a CRUD API, otherwise called a web service.
-
-参考官方文档：https://doc.prestashop.com/display/PS16/Using+the+OpenCart+Web+Service
+|–catalog 前台
+|–|–M: catalogmodel
+|–|–V: catalogview
+|–|–C: catalogcontroller
+|–|–L: cataloglanguage
+```

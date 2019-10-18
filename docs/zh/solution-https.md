@@ -22,18 +22,18 @@ OpenCart(LAMP) 即运行环境采用 **Apache** 作为 Web Server
    ``` text
    #-----HTTPS template start------------
    <VirtualHost *:443>
-    ServerName  prestashop.yourdomain.com
-    DocumentRoot "/data/wwwroot/prestashop"
-    #ErrorLog "logs/prestashop.yourdomain.com-error_log"
-    #CustomLog "logs/prestashop.yourdomain.com-access_log" common
-    <Directory "/data/wwwroot/prestashop">
+    ServerName  opencart.yourdomain.com
+    DocumentRoot "/data/wwwroot/opencart"
+    #ErrorLog "logs/opencart.yourdomain.com-error_log"
+    #CustomLog "logs/opencart.yourdomain.com-access_log" common
+    <Directory "/data/wwwroot/opencart">
     Options Indexes FollowSymlinks
     AllowOverride All
     Require all granted
     </Directory>
     SSLEngine on
-    SSLCertificateFile  /data/cert/prestashop.yourdomain.com.crt
-    SSLCertificateKeyFile  /data/cert/prestashop.yourdomain.com.key
+    SSLCertificateFile  /data/cert/opencart.yourdomain.com.crt
+    SSLCertificateKeyFile  /data/cert/opencart.yourdomain.com.key
     </VirtualHost>
    #-----HTTPS template end------------
    ```
@@ -59,12 +59,6 @@ OpenCart(LEMP) 即运行环境采用 **Nginx** 作为 Web Server
    ```
 3. 修改 ssl_certificate, ssl_certificate_key 的值
 4. 保存，[重启 Nginx 服务](/zh/admin-services.html#nginx)
-
----
-
-完成环境的 HTTPS 设置之后，【登录 OpenCart 后台】>【Shop Parameters】>【General】，对所有页面启用 HTTPS 设置
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-allhttps-websoft9.png)
-
 
 ## 详细指南
 

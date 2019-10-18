@@ -16,15 +16,12 @@ Follow is the sample using **SendGrid's SMTP Service** to configure sending mail
    SMTP password: #fdfwwBJ8f    
    ```
 2. Log in OpenCart console as administrator, configure SMTP  
+   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/opencart-smtp-websoft9.png)
   
-   - Open:【Advanced Parameters】>【Email】,selecting 【Set my own SMTP parameters】
-     ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/prestashop/prestashop-smtp001-websoft9.png)
-     ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/prestashop/prestashop-smtp002-websoft9.png)
-   - Fill in your correct SMTP information
-     ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/prestashop/prestashop-smtp003-websoft9.png)
+   - SMTP Hostname: tls:// or ssl:// is need
+   - Make sure you have input correct SMTP items
 
-5. Send test mail
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/prestashop/prestashop-smtp004-websoft9.png)
+3. Send testing Email
      
 
 More SMTP Service(Gmail, Hotmail, QQ mail, Yahoo mail, SendGrid and so on)  settings or Issues with SMTP, please refer to Websoft9's *[SMTP Guide](https://support.websoft9.com/docs/faq/tech-smtp.html)*

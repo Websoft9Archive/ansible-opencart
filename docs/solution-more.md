@@ -16,7 +16,7 @@ OpenCart domain name binding steps:
    #### OpenCart (LAMP) bind domain #### 
 
      <VirtualHost *:80>
-     ServerName prestaShop.mydomain.com # modify it for you
+     ServerName opencart.mydomain.com # modify it for you
      DocumentRoot "/data/wwwroot/OpenCart"
      ...
      
@@ -24,72 +24,83 @@ OpenCart domain name binding steps:
 
      server {
       listen 80;
-      server_name    prestaShop.example.com; # modify it for you
+      server_name    opencart.example.com; # modify it for you
      ...
 
    ```
 3. Save it and restart [Web Service](/admin-services.md#apache)
 
 
-## OpenCart Maintenance mode
-
-Log in OpenCart console, open:【Shop Parameters】>【General】>【Maintenance】
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-mantmode-websoft9.png)
-
-
 ## OpenCart change domain
 
-If you want to change domain for OpenCart, these steps you need to do:
+You can change the domain of OpenCart by the following steps:
 
-1. Completed domain resolution and domain binding
-2. Enable OpenCart's Maintenance mode
-3. Edit the OpenCart's configuration file([path](/stack-components.html#prestashop)), modify the domain
-4. Log in OpenCart console, open:【Shop Parameters】>【Traffic&SEO】, modify the shop URL
-  ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-seturl-websoft9.png)
+1. Complete the new **Domain resolution and Domain binding**
+2. Modify the OpenCart configuration `config.php` in the root directory
+   ```
+   // HTTP
+   define('HTTP_SERVER', 'http://example.com/');
+   // HTTPS
+   define('HTTPS_SERVER', 'https://example.com/');
+   ```
+3. Modify the OpenCart configuration `admin/config.php` in the root directory
+   ```
+   // HTTP
+   define('HTTP_SERVER', 'http://www.example.com/admin/');
+   define('HTTP_CATALOG', 'http://www.example.com/');
+   // HTTPS
+   define('HTTPS_SERVER', 'http://www.example.com/admin/');
+   define('HTTPS_CATALOG', 'http://www.example.com/');
+   ```
+3. [Restart PHP-FPM Service](/admin-services.html#php-fpm)
 
-## OpenCart import
+## OpenCart vQmod
 
-Log in OpenCart console, open:【Advanced Parameters】>【Import】
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-importdb-websoft9.png)
+Opencart 2.0 using **vQmod** for installing extensions, so you need to install and enable vQmod:
 
-## OpenCart Modules
+1. [Download vQmod](https://github.com/vqmod/vqmod)
+2. Go to Extensions > Installer, upload **vqmod.zip**
+3. Go to Extensions > Extensions > Modules > Integrated VQmod to install and then edit to enable this module
 
-Modules is a very import function for OpenCart to extend the business requirement
 
-1. Log in OpenCart console,
-2. Open:【Modules】>【Module Catalog】, find the module you want to install and click the【Install】button
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-installmd-websoft9.png)
-3. Open:【Modules】>【Module Manager】, find the module you want to upgrade and click the【Upgrade】button
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-upgrademodules-websoft9.png)
+## OpenCart reset password
 
-## OpenCart connect Marketplace
+If you have forgotten the administrator password of OpenCart and can not reset by email, this solution is useful for you:
 
-Completed installation of OpenCart, suggest you make your OpenCart system connect OpenCart's Marketplace. Once you have connected it, you can use many resourses on Marketplace. Refer to [Connect Marketplace](/stack-installation.html#connect-prestashop-marketplace)
+1. Use [phpMyAdmin](/admin-mysql.html) to log in MySQL
+2. Find the database of Opencart, open the command windows of SQL
+3. Run below command
+   ```
+   //set the username admin's password to 123456, you can modify this command yourself
+   UPDATE oc\_user SET password = md5('123456'), salt = '' WHERE username = 'admin';
+   ```
+
+## OpenCart Extension
+
+OpenCart have 13000+ extention published on the Marketplace, how to insatll them?
+
+1. Find the extension you want to used on Marketplace and download it
+2. Log in OpenCart console, open:【Extensions】>【Installer】
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/opencart-installex-websoft9.png)
+3. Upload your extension compressed file
+4. Installing it
+
 
 ## OpenCart language
 
-OpenCart's multi-language support is very mature. The system has a multi-language system built in the background. You only need to select the corresponding language and import it online to your OpenCart system.
+Enable a new language package in Opencart have the following steps(e.g Chinese lanuage)
 
-### Import language
+1. Go to [OpenCart Marketplace](https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=19126&filter_category_id=2&page=8), download suitable lanuage package
+2. Unzip package, you can see a folder name `upload` that includes two folder `admin`, `catalog`
+3. Use SFTP to upload them to your Server
+   ```
+   admin->language->zh_cn  to  ```/data/wwwroot/opencart/admin/language``` 
+   catalog->language->zh-cn to ```/data/wwwroot/opencart/catalog/language```
+   ```
+4. Log in OpenCart, go to【System】>【localization】>【languages】, add new language and configure it
+	![websoft9](http://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-1-websoft9.png)
 
-1. Log in OpenCart console, open:【International】>【Localization】>【language】, enter the interface of language settings
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/prestashop/prestashop-local-websoft9.png)
-2. Select the language you want to use and click【import】 icon to import online
-3. Click 【language】 tab, you can see all language packages been installed successfully
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/prestashop/prestashop-alllanguage-websoft9.png) 
+5. Enable language both for catalog and admin: open 【System】>【Settings】, the 【Language】 for catalog, 【Administration Language】for admin
+	   ![websoft9](http://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-language-2-websoft9.png)
 
-> When add new language for OpenCart, it will add redirects rules in the  `.htaccess` file of OpenCart root directory.
-
-### Delete language
-
-1. Log in OpenCart console, open:【International】>【Localization】>【language】,edit your language
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/prestashop/prestashop-dellanguage001-websoft9.png)
-2. Set the Status to 【No】
-3. Click 【language】 tab, you can delete the language you have disabled
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-dellanguage002-websoft9.png)
-
-## OpenCart API (Web Service)
-
-OpenCart enables merchants to give third-party tools access to their shop's database through a CRUD API, otherwise called a web service.
-
-Refer to official docs: [OpenCart API](https://doc.prestashop.com/display/PS16/Using+the+OpenCart+Web+Service)
+6. Refresh OpenCart, display the new language

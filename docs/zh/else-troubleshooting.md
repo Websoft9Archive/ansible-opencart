@@ -12,12 +12,19 @@
 1. 分析网站根目录下的 `.htaccess` 文件，看看有没有死循环规则
 2. 进入后台先删除中文，然后再重新导入中文。重新导入的时候，OpenCart会自动生成伪静态规则，覆盖您网站根目录的 `.htaccess` 文件
 
+####  域名配置后，会出现“页面布局混乱或图片无法显示”？
+
+如果先通过 IP 安装，再绑定域名，就会出现这个问题，请分别打开 OpenCart 的[配置文件](/zh/stack-components.html#opencart)，将其中的IP地址改成域名。
+
+#### 安装插件，显示403权限不足，错误"you dont have permession to access /admin/index.php"
+
+修改文件：/etc/httpd/conf.d/mod\_evasive.conf 中  DOSPageCount 2 改为 DOSPageCount 12
 
 #### 修改了数据库密码 OpenCart 不能访问？
 
-若已完成 OpenCart 安装向导，再通过 phpMyAdmin 修改数据库密码，OpenCart 就会连不上数据库
+若已完成 OpenCart 安装向导，再通过 phpMyAdmin 修改数据库密码，OpenCart 就会连不上数据库  
 
-需要修改 [OpenCart 配置文件](/zh/stack-components.html#prestashop) 对应的数据库 password 参数即可。
+需要修改 [OpenCart 配置文件](/zh/stack-components.html#opencart) 对应的数据库 password 参数即可。
 
 #### Apache httpd 服务无法启动？
 

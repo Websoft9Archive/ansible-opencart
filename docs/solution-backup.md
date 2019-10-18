@@ -49,9 +49,9 @@ Manual backup for application is based on the **Exporting source code and databa
 ```
 The general manual backup operation steps are as follows:
 
-1. Compress and download the entire */data/wwwroot/prestashop* directory by SFTP 
+1. Compress and download the entire */data/wwwroot/opencart* directory by SFTP 
 2. Export OpenCart's database by [phpMyAdmin](/admin-mysql.md)
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/prestashop/prestashop-dbexport-websoft9.png)
+   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/mysql/phpmyadmin-export-websoft9.png)
 3. Put the source code file, data file and database file in the same folder, named according to the date
 4. Backup completed
 
@@ -60,6 +60,5 @@ The general manual backup operation steps are as follows:
 This section provides OpenCart online database backup solution
 
 1. Log in OpenCart console as administrator
-2. Open【Advanced Parameters】>【DB backup】
-  ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-dbbackup-websoft9.png)
-3. Create a new backup and download it
+2. Open:【Advanced Parameters】>【DB backup】,create a new backup and download it
+  ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/opencart-backupdb-websoft9.png)

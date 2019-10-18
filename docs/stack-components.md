@@ -7,7 +7,8 @@ The OpenCart deployment package contains a sequence software (referred to as "co
 ### OpenCart
 
 OpenCart installation directory: */data/wwwroot/OpenCart*  
-OpenCart configuration file: */data/wwwroot/prestashop/app/config/parameters.php*  
+OpenCart catalog configuration file: */data/wwwroot/opencart/config.php*   
+OpenCart admin configuration file: */data/wwwroot/opencart/admin/config.php*
 
 ### PHP
 

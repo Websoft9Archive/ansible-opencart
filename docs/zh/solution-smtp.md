@@ -15,14 +15,12 @@
    SMTP username: websoft9@163.com
    SMTP password: #wwBJ8    //此密码不是邮箱密码，是需要通过163邮箱后台设置去获取的授权码
    ```
-4. 登录到 OpenCart 后台，完成 SMTP 参数设置  
+2. 登录到 OpenCart 后台，完成 SMTP 参数设置  
+   ![](http://libs.websoft9.com/Websoft9/DocsPicture/zh/opencart/opencart-smtp-websoft9.png)
   
-   - 依次打开：【配置】>【高级参数】>【邮箱】，选择第二项【设置我的SMTP参数】
-     ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-smtp-1-websoft9.png)
-   - 准确的填写你的 SMTP 参数
-     ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-smtp-2-websoft9.png) 
+   - 输入提供SMTP服务的服务器地址，其中的 ssl://  一定不能省略
+   - 务必准确的填写你的 SMTP 参数
 
-5. 发送测试邮件
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-smtp-3-websoft9.png)
+3. 发送测试邮件
      
 > 更多邮箱设置（QQ邮箱，阿里云邮箱，Gmail，Hotmail等）以及无法发送邮件等故障之诊断，请参考由Websoft9提供的 [SMTP 专题指南](https://support.websoft9.com/docs/faq/zh/tech-smtp.html)

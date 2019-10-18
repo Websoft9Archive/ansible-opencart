@@ -32,26 +32,17 @@ Below is the step for upgrade online:
 
 ## OpenCart Upgrade
 
-Installing the module 【1-Click Upgrade】for OpenCart upgrading online
+The following upgrade steps are a simplification of the official upgrade documentation:
 
-1. Log in OpenCart console, open【Modules Catalog】, search the module【upgrade】 and install it
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-upgrade001-websoft9.png)
-2. Set it when you have completed the installation of this module
-3. Set your OpenCart to [maintenance mode](/solution-more.md#prestashop-maintenance-mode)
-4. Click【Upgrade OpenCart now】 to start upgrading
-   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/prestashop/prestashop-checkupgrade-websoft9.png)
-5. The latest installation package will be downloaded first during the upgrade. Due to network factors, this process may be slow.
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-upgrade003-websoft9.png)
-6. Exceptions to the upgrade process
-   - If you can't complete this step to download a new version, you need to try multiple times.
-   - May get the error “you don't have permission...ajax-upgradetab.php”
+1. Backup OpenCart source code and database, and download them to local computer
+2. [Download](https://www.opencart.com/index.php?route=cms/download) the latest version of OpenCart and unzip it
+3. Use SFTP to log in Server, upload latest OpenCart source code and cover the old
+4. Upload the `config.php` and `admin/config.php` in the OpenCart root directory of backup to Server
+   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update001-websoft9.png)  
+   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update002-websoft9.png) 
+5. Visit *http://域名/install* to start upgrade
+   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update003-websoft9.png)  
+6. Upgrading successfully
+   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update004-websoft9.png)  
 
-> More upgrade details please refer to: [OpenCart Backup](http://doc.prestashop.com/display/PS16/Manual+update)
-
-## OpenCart Module Upgrade
-
-OpenCart can upgrade the Module online
-
-1. Log in OpenCart as administrator, open【Modules Catalog】
-2. Find the module you need to upgrade, click the 【Upgrade】 button
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-upgrademodules-websoft9.png)
+> More upgrade details please refer to: [OpenCart Upgrading](http://docs.opencart.com/en-gb/upgrading/)

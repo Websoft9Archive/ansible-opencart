@@ -22,18 +22,18 @@ LAMP means that **Apache** for Web Server
    ``` text
    #-----HTTPS template start------------
    <VirtualHost *:443>
-    ServerName  prestashop.yourdomain.com
-    DocumentRoot "/data/wwwroot/prestashop"
-    #ErrorLog "logs/prestashop.yourdomain.com-error_log"
-    #CustomLog "logs/prestashop.yourdomain.com-access_log" common
-    <Directory "/data/wwwroot/prestashop">
+    ServerName  opencart.yourdomain.com
+    DocumentRoot "/data/wwwroot/opencart"
+    #ErrorLog "logs/opencart.yourdomain.com-error_log"
+    #CustomLog "logs/opencart.yourdomain.com-access_log" common
+    <Directory "/data/wwwroot/opencart">
     Options Indexes FollowSymlinks
     AllowOverride All
     Require all granted
     </Directory>
     SSLEngine on
-    SSLCertificateFile  /data/cert/prestashop.yourdomain.com.crt
-    SSLCertificateKeyFile  /data/cert/prestashop.yourdomain.com.key
+    SSLCertificateFile  /data/cert/opencart.yourdomain.com.crt
+    SSLCertificateKeyFile  /data/cert/opencart.yourdomain.com.key
     </VirtualHost>
    #-----HTTPS template end------------
    ```
@@ -60,11 +60,6 @@ LEMP means that **Nginx** for Web Server
    ```
 4. Modify ssl_certificate, ssl_certificate_key
 5. Save it and [Restart Nginx service](/admin-services.md#nginx)
-
----
-
-Completed the HTTPS settings on your Server, then you should log in OpenCart, open【Shop Parameters】>【General】, enable HTTPS for all pages
-![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-allhttps-websoft9.png)
 
 ## Special Guide
 

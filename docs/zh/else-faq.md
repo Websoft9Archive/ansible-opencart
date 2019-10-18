@@ -2,11 +2,7 @@
 
 #### OpenCart 支持多语言吗？
 
-支持多语言（包含中文），通过[后台设置](/zh/solution-more.html#prestashop-语言包)即可
-
-#### 为什么要连接 OpenCart Marketplace？
-
-只有连接OpenCart Marketplace，才可以使用其资源。连接教程[参考](/zh/stack-installation.html#连接-prestashop-marketplace)
+支持多语言（包含中文），通过[后台设置](/zh/solution-more.html#opencart-语言包)即可
 
 #### OpenCart(LAMP)，OpenCart(LNMP)等商品括号中的 LAMP,LNMP 是什么意思？
 
@@ -14,7 +10,7 @@ LAMP和LNMP代表支持 OpenCart 运行所对应的基础环境，具体参考[�
 
 #### 是否可以使用云平台的 RDS 作为 OpenCart 的数据库？
 
-可以，修改 [OpenCart 配置文件](/zh/stack-components.html#prestashop) 即可
+可以，修改 [OpenCart 配置文件](/zh/stack-components.html#opencart) 即可
 
 #### OpenCart能在Windows服务器上运行吗？
 
@@ -22,7 +18,11 @@ LAMP和LNMP代表支持 OpenCart 运行所对应的基础环境，具体参考[�
 
 #### OpenCart数据库连接配置信息在哪里？
 
-数据库配置信息 [OpenCart 配置文件](/zh/stack-components.html#prestashop)中
+数据库配置信息 [OpenCart 配置文件](/zh/stack-components.html#opencart)中
+
+#### 安装 OpenCart Extension 需要[设置 FTP 账号](http://docs.opencart.com/en-gb/extension/installer/)吗？
+
+自 OpenCart3.0 开始已经不需要了
 
 #### 如果没有域名是否可以部署 OpenCart？
 
@@ -42,7 +42,7 @@ LAMP和LNMP代表支持 OpenCart 运行所对应的基础环境，具体参考[�
 
 #### 是否可以修改 OpenCart 的源码路径？
 
-可以，通过修改 [虚拟主机配置文件](/zh/stack-components.md#prestashop)中相关参数
+可以，通过修改 [虚拟主机配置文件](/zh/stack-components.md#opencart)中相关参数
 
 #### 如何修改上传的文件权限?
 

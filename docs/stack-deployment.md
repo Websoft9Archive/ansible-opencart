@@ -11,9 +11,9 @@ We offer two deployment OpenCart scenarios (the deployment results are the same)
 
 **Deploy by Image** means starting instance from OpenCart images. **OpenCart Image** provide OS and software environment needed for OpenCart.
 
-For users with experience with cloud servers, Deploy by Image equated with "one-click deployment".
+For users with experience with cloud servers, Deploy by Image equated with "one-click deployment". 
 
-Websoft9 published [OpenCart image](https://apps.websoft9.com/prestashop) on Cloud Platform, three methods for your deployment:
+Websoft9 published [OpenCart image](https://apps.websoft9.com/opencart) on Cloud Platform, three methods for your deployment:
 
 * When **Create New Instance** , select the OpenCart image as the system boot template.
 * When **Subscribe OpenCart** on Marketplace, the system will promote you to create a new instance for this image at the same time.
@@ -23,7 +23,7 @@ Websoft9 published [OpenCart image](https://apps.websoft9.com/prestashop) on Clo
 
 **Deploy by Script** means running a script on your cloud instance to pull the pre-packages online to your instance and configure it at the same time.
 
-Websoft9 provide the [OpenCart ansbile automation script](https://github.com/Websoft9/ansible-prestashop) on Github. If you are familiar with Ansible, you can deploy the OpenCart to the instance automaticly.
+Websoft9 provide the [OpenCart ansbile automation script](https://github.com/Websoft9/ansible-opencart) on Github. If you are familiar with Ansible, you can deploy the OpenCart to the instance automaticly.
 
 ## Comparison
 

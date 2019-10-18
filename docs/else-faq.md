@@ -8,10 +8,6 @@ Yes
 
 UTF-8
 
-#### Why should I link to the OpenCart Marketplace?
-
-Just link OpenCart Marketplace, you can use the resources of Marketplace online. [Connect Marketplace](/stack-installation.html#connect-prestashop-marketplace)
-
 #### What the difference between the OpenCart(LAMP) and OpenCart(LEMP) ?
 
 LAMP is using Apache as Web Server for your OpenCart  
@@ -23,7 +19,7 @@ You can use the RDS for OpenCart if you need,and just need to modify the databas
 
 #### Where is the database connection configuration of OpenCart?
 
-Database configuration information in *LocalSettings.php* in the [OpenCart installation directory](/stack-components.md#prestashop)
+Database configuration information in *LocalSettings.php* in the [OpenCart installation directory](/stack-components.md#opencart)
 
 #### If there is no domain name, can I deploy OpenCart?
 
@@ -55,7 +51,7 @@ No, you don't need to change them because LAMP/LNMP was set to changed automatic
 
 #### How to modify the path of OpenCart?
 
-Example application's path is: */data/wwwroot/prestashop*, you can modify it by [vhost configuration file](/stack-components.md#apache)
+Example application's path is: */data/wwwroot/opencart*, you can modify it by [vhost configuration file](/stack-components.md#apache)
 
 #### How to delete 9Panel?
 

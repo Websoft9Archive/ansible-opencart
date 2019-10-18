@@ -54,17 +54,16 @@ sidebarDepth: 3
 ```
 通用的手动备份操作步骤如下：
 
-1. 通过 WinSCP 将网站目录（*/data/wwwroot/prestashop*）**压缩后**再完整的下载到本地
+1. 通过 WinSCP 将网站目录（*/data/wwwroot/opencart*）**压缩后**再完整的下载到本地
 2. 通过 phpMyAdmin 导出 OpenCart 数据库
-  ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/prestashop/prestashop-dbexport-websoft9.png)
+  ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/mysql/phpmyadmin-export-websoft9.png)
 3. 将程序文件、数据文件和数据库文件放到同一个文件夹，根据日期命名
 4. 备份工作完成
 
 ### OpenCart 后台备份
 
-OpenCart 提供了后台数据库备份功能
+OpenCart 后台提供了数据库备份功能
 
 1. 登录 OpenCart 后台
-2. 依次打开：【Advanced Parameters】>【DB backup】
-  ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-dbbackup-websoft9.png)
-3. 创建一个备份，然后下载到本地
+2. 打开：【System】>【Maintenance】>【Backup/Restore】，开始备份数据库
+  ![](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/opencart-backupdb-websoft9.png)

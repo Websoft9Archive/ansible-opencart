@@ -6,8 +6,9 @@ OpenCart 预装包包含 OpenCart 运行所需一序列支撑软件（简称为�
 
 ### OpenCart
 
-OpenCart 安装目录： */data/wwwroot/prestashop*  
-OpenCart 配置文件： */data/wwwroot/prestashop/app/config/parameters.php*  
+OpenCart 安装目录： */data/wwwroot/opencart*  
+OpenCart 前台配置文件： */data/wwwroot/opencart/config.php*  
+OpenCart 后台配置文件： */data/wwwroot/opencart/admin/config.php* 
 
 > OpenCart 配置文件中包含数据库连接信息，更改了 MySQL 数据库账号密码，此处也需要对应修改
 

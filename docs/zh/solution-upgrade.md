@@ -25,26 +25,17 @@ apt update && apt upgrade -y
 
 ## OpenCart 升级
 
-OpenCart 自动备份是通过一个名称为“1-Click Upgrade”的插件实现的，具体步骤如下：
+以下升级步骤是官方升级文档的简化：
 
-1. 登录 OpenCart 后台，打开【Modules Catalog】，搜索“upgrade”，安装备份插件
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-upgrade001-websoft9.png)
-2. 安装完成后，点击“配置”，进入模块设置界面
-3. 根据设置建议，将系统置为维护模式（maintenance mode）
-4. 点击【Upgrade OpenCart now】按钮，开始升级
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-upgrade002-websoft9.png)
-5. 升级过程中首先会下载最新的安装包，受制于网络因素，这个过程可能会比较慢。
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-upgrade003-websoft9.png)
-6. 升级过程的例外情况
-   - 如果下载新版本这个步骤无法完成，需要多次尝试
-   - 若出现 “you don't have permission...ajax-upgradetab.php” 的错误提示，升级失败，暂无解决办法
+1. 备份 OpenCart 程序和数据库文件，下载到本地
+2. [下载](https://www.opencart.com/index.php?route=cms/download)最新的 OpenCart 程序
+3. 使用 SFTP 登录服务器，上传新的代码，覆盖原来的文件
+4. 将本地备份的 OpenCart 根目录下的 `config.php` 文件和 `admin/config.php` 重新上传到服务器
+   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update001-websoft9.png)  
+   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update002-websoft9.png) 
+5. 浏览器访问：*http://域名/install* 开始升级
+   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update003-websoft9.png)  
+6. 升级成功提示 
+   ![](http://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/Opencart-update004-websoft9.png)  
 
-> 与升级有关的更多方案，请参考官方文档：[OpenCart Backup](https://doc.prestashop.com/display/PS16/Manual+update)
-
-## OpenCart Module 升级
-
-OpenCart 提供了在线插件升级能力
-
-1. 登录 OpenCart 后台，打开【Modules Catalog】
-2. 找到需要升级的插件，点击【Upgrade】即可在线升级
-   ![](https://libs.websoft9.com/Websoft9/DocsPicture/zh/prestashop/prestashop-upgrademodules-websoft9.png)
+参考官方升级文档：[Upgrading](http://docs.opencart.com/en-gb/upgrading/)
