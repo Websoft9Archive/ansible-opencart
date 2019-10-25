@@ -26,12 +26,6 @@ apt update && apt upgrade -y
 
 ## OpenCart Upgrade
 
-OpenCart provide two methond for Upgrade: OpenCart backend online upgrade and Composer command upgrade  
-
-Below is the step for upgrade online:
-
-## OpenCart Upgrade
-
 The following upgrade steps are a simplification of the official upgrade documentation:
 
 1. Backup OpenCart source code and database, and download them to local computer
