@@ -30,9 +30,16 @@
 
 请通过分析日志文件定位原因： */var/log/httpd*
 
-#### 网站重定向错误？
+#### 代码500错误？
 
+通过日志文件找到出问题的代码，下面是一个范例：
 
+```
+[Sun Jan 26 07:13:47.606086 2020] [:error] [pid 20341] [client 35.229.42.198:47877] PHP Fatal error:  Uncaught Error: Class 'FacebookCommonUtils' not found in /data/wwwroot/default/storage/modification/catalog/controller/common/header.php:6\nStack trace:\n#0 /data/wwwroot/default/storage/modification/system/engine/action.php(79): ControllerCommonHeader->index(Array)\n#1 /data/wwwroot/default/storage/modification/system/engine/loader.php(48): Action->execute(Object(Registry), Array)\n#2 /data/wwwroot/default/storage/modification/catalog/controller/common/home.php(24): Loader->controller('common/header')\n#3 /data/wwwroot/default/storage/modification/system/engine/action.php(79): ControllerCommonHome->index()\n#4 /data/wwwroot/default/opencart/catalog/controller/startup/router.php(25): Action->execute(Object(Registry))\n#5 /data/wwwroot/default/storage/modification/system/engine/action.php(79): ControllerStartupRouter->index()\n#6 /data/wwwroot/default/storage/modification/system/engine/router.php(108): Action->execute(Object(Registry))\n#7 /data/wwwroot/default/storage/modification/system/engine/router.php(97): Router- in /data/wwwroot/default/storage/modification/catalog/controller/common/header.php on line 6
+
+```
+
+如果是扩展（插件）问题，建议重新下载插件然后通过SFTP上传到Opencart文件夹，再测试问题是否解除
 
 #### 数据库服务无法启动
 
