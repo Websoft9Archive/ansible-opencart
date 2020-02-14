@@ -1,65 +1,68 @@
-# Opencart
 
-## 说明
+# OpenCart 自动化安装与部署
 
-此项目是用Ansible编写的Opencart自动安装程序.
+本项目是由 [Websoft9](https://www.websoft9.com) 研发的 [OpenCart](https://www.opencart.com/) 自动化安装程序，开发语言是 Ansible。使用本项目，只需要用户在 Linux 上运行一条命令，即可自动化安装 OpenCart，让原本复杂的安装过程变得没有任何技术门槛。  
 
-## 安装基础环境
+本项目是开源项目，采用 LGPL3.0 开源协议。
 
-### 基础环境要求
+## 配置要求
 
-官方对基础环境的最低要求建议如下：
-~~~
-Web Server (Apache suggested)
-PHP (at least 5.4)
-Curl enabled
-Database (MySQLi suggested)
-~~~
+安装本项目，确保符合如下的条件：
 
-基于官方的要求，本程序仅适用于Websoft9的基础环境，包括：
+| 条件       | 详情       | 备注  |
+| ------------ | ------------ | ----- |
+| 操作系统       | CentOS7.x       |   |
+| 公有云| AWS, Azure, 阿里云, 华为云, 腾讯云 | 可选 |
+| 私有云|  KVM, VMware, VirtualBox, OpenStack | 可选 |
+| 服务器配置 | 最低1核1G，安装时所需的带宽不低于10M |  建议采用按量100M带宽 |
 
-* LAMP
-* LNMP（暂时不支持）
+## 组件
 
-本程序在php7.0,mysql5.6下测试运行正常
+包含的核心组件为：opencart + Apache/Nginx + MySQL + PHP
 
-### 适用于的操作系统
+更多请见：[参数表](/docs/zh/stack-components.md)
 
-* CentOS7.X
-* Ubuntu（暂时不支持）
+## 本项目安装的是 opencart 最新版吗？
 
-### 服务器配置要求
+本项目通过下载[opencart源码](https://github.com/opencart/opencart)进行安装，其中版本号存储在：[role/opencart/default/main.yml](/roles/opencart/defaults/main.yml)
 
-* 建议最低配置1核1G
+```
+#opencart版本，需定期维护
+opencart_version: 3.0.3.2
+```
 
+如果你想修改版本号，请先查看 opencart 仓库 [tags](https://github.com/opencart/opencart/tags) 标签值，再修改上面的 `opencart_version` 变量值。
 
-## 源码包
+我们会定期检查版本，并测试官方版本的可用性，以保证用户可以顺利安装最新版。
 
-目前提供Opencart官方原版（含中文语言包）、成都光大网络版两个版本，通过修改下载链接进行区分
+## 安装指南
 
+以 root 用户登录 Linux，运行下面的**一键自动化安装命令**即可启动自动化部署。若没有 root 用户，请以其他用户登录 Linux 后运行 `sudo su -` 命令提升为 root 权限，然后再运行下面的脚本。
 
-### 版本
+```
+wget -N https://raw.githubusercontent.com/Websoft9/linux/master/ansible_script/install.sh ; bash install.sh repository=opencart
+```
 
-1. Opencart官方版当前源码包版本为：V3.0.3.1，下载地址：https://www.opencart.com/index.php?route=cms/download ，
-2. Opencart光大网络版是包含了中英文的本地版本，有大量的修，当前版本是V3.0，基于官方原版3.0.2.1基础上匠心二次开发而来。下载地址：https://www.opencart.cn/download
+脚本后启动，就开始了自动化安装，必要时需要用户做出交互式选择，然后耐心等待直至安装成功。
 
-### 其他说明
+**安装中的注意事项：**  
 
-Opencart官方安装包和光大网络的源码解压后的路径是：opencart/upload，因此Ansible下载到服务器之后还需要将源码移动到opencart目录下面
+1. 操作不慎或网络发生变化，可能会导致SSH连接被中断，安装就会失败，此时请重新安装
+2. 安装缓慢、停滞不前或无故中断，主要是网络不通（或网速太慢）导致的下载问题，此时请重新安装
 
+多种原因导致无法顺利安装，请使用我们在公有云上发布的 [opencart镜像](https://apps.websoft9.com/opencart) 的部署方式
 
-### 默认安装中文语言包方案
-1. 手工打包中文语言包，名称为opencart,其中包含admin,catalog,install三个包，上传到OSS
-2. Ansible程序给roles设置一个语言变量。使用方法：language: cn 即额外再预装一个中文语言包 
-3. Ansible程序修改intall目录下的opencart.sql文件，插入语言表的第二行简体中文项（见下）
-~~~
-INSERT INTO `oc_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `sort_order`, `status`) VALUES
-(1, 'English', 'en-gb', 'en-US,en_US.UTF-8,en_US,en-gb,english', 'gb.png', 'english', 1, 1),
-(2, ' 简体中文', 'zh-cn', 'zh_CN.UTF-8,zh_CN,zh-cn,china', 'cn.png', 'zh-CN', 1, 1);
-~~~
-
----
 
 ## 文档
 
-参考：https://support.websoft9.com/docs/opencart
+文档链接：https://support.websoft9.com/docs/opencart/zh
+
+## FAQ
+
+- 命令脚本部署与镜像部署有什么区别？请参考：[镜像部署-vs-脚本部署](https://support.websoft9.com/docs/faq/zh/bz-product.html#镜像部署-vs-脚本部署)
+- 本项目支持在 Ansible Tower 上运行吗？支持
+
+## To do
+
+* 添加 Nginx 支持
+* 添加 Ubuntu18.04, Amazon Linux2 支持

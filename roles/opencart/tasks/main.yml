@@ -1,0 +1,103 @@
+---
+#引入PHP运行环境元数据，并初始化
+- include_vars: roles/role_php-fpm/vars/php_runtime_meta.yml
+
+#Modify var for this playbook
+- set_fact:
+    opencart_vhost_dir: "{{php_runtime_meta[ansible_distribution][opencart_webs].vhost_dir}}"
+    opencart_vhost_src: "{{php_runtime_meta[ansible_distribution][opencart_webs].vhost_src}}"
+    opencart_service: "{{php_runtime_meta[ansible_distribution][opencart_webs].service}}"
+    opencart_owner: "{{php_runtime_meta[ansible_distribution][opencart_webs].owner}}"
+
+- debug:
+    msg: runtime {{ opencart_vhost_dir }}, {{opencart_vhost_src}}, {{opencart_service}}, {{opencart_owner}}, {{opencart_webs}}, {{ansible_distribution}}
+
+# 9panel
+- name: Enable 9panel I
+  lineinfile:
+    path: /data/apps/9panel/js/websoft9.js
+    regexp: 'var set_apps=\["Example"\];'
+    line: 'var set_apps=["OpenCart"];'
+
+# Opencart
+- name: Remove example dir
+  file:
+    path: /data/wwwroot/www.example.com
+    state: absent
+
+- name: Create opencart1 folder
+  file:
+    path: /data/wwwroot/opencart1
+    state: directory
+    mode: 0750
+
+- name: Download Opencart
+  git:
+    repo: https://github.com/opencart/opencart.git
+    dest: /data/wwwroot/opencart1
+    version: "{{opencart_version}}"
+
+- name: Download Opencart language package
+  unarchive:
+    src: "{{ opencart_package_CN }}"
+    dest: /opt
+    remote_src: yes
+  when: language == "cn"
+
+- name: move language sql to opencart source directory
+  shell: mv -f /opt/opencart/upload/install/opencart.sql /data/wwwroot/opencart1/upload/install/
+  when: language == "cn"
+
+- name: delete sql file
+  file:
+    path: /opt/opencart/upload/install/opencart.sql
+    state: absent
+  when: language == "cn"
+
+- name: move language package to opencart source code
+  shell: cp -rf /opt/opencart/upload/* /data/wwwroot/opencart1/upload/
+  when: language == "cn"
+
+- name: delete language package
+  file: 
+    path: /opt/opencart
+    state: absent
+  when: language == "cn"
+
+- name: Create opencart directory
+  file:
+    path: /data/wwwroot/opencart
+    state: directory
+    mode: 0750
+
+- name: move upload directory to opencart 
+  shell: mv /data/wwwroot/opencart1/upload/* /data/wwwroot/opencart
+
+- name: delete opencart1 directory
+  file: 
+    path: /data/wwwroot/opencart1
+    state: absent
+
+- name: Rename config-dist.php to config-dist.php
+  shell: cp /data/wwwroot/opencart/config-dist.php /data/wwwroot/opencart/config.php
+  
+- name: Rename admin/config-dist.php to config-dist.php
+  shell: cp /data/wwwroot/opencart/admin/config-dist.php /data/wwwroot/opencart/admin/config.php
+
+# 系统通用
+- name: Permission directory
+  shell: find /data/wwwroot -type d -exec chmod 750 {} \;
+  
+- name: Permission file
+  shell: find /data/wwwroot -not -type d -exec chmod 640 {} \;
+
+# 根据不同的基础环境分别处理
+- block:
+  - name: change owner&group for Apache
+    shell: chown -R {{opencart_owner}}:{{opencart_owner}} /data/wwwroot
+
+  - name: Copy Apache or Nginx vhost configuration
+    copy: src={{opencart_vhost_src}} dest={{opencart_vhost_dir}}
+    
+  - name: restart Apache or Nginx
+    service: name={{opencart_service}} state=restarted enabled=yes

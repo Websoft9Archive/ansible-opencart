@@ -1,0 +1,13 @@
+
+opencart_package_CN:     http://libs.websoft9.com/apps/opencart/opencart3-cnpack.zip   #中文语言包
+
+#OpenCart版本，需定期维护
+opencart_version: 3.0.3.2
+
+#Web服务器：apache | nginx，通过交互式选择获取
+opencart_webs: apache
+
+opencart_vhost_dir: /etc/httpd/vhost
+opencart_vhost_src: vhost.conf
+opencart_service: httpd
+opencart_owner: apache
