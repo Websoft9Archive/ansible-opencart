@@ -11,11 +11,23 @@
       private: no
       default: 1
 
+    - name: 'opencart_version_select'
+      prompt: "\nWhich opencart do you want to install? [ 1/2 ] \n\n
+      1. Original edition
+      2. 光大网络版"
+      prinvate: no
+      default: 1
+
   vars:
-    temp_ver:
+    temp_webserver_var:
       '1': 'apache'
       '2': 'nginx'
-    opencart_webs: "{{temp_ver[webserver_select]}}" 
+    temp_opencart_var:
+      '1': 'Original edition'
+      '2': '光大网络版'
+
+    opencart_webs: "{{temp_webserver_var[webservr_select]}}"
+    opencart_type: "{{temp_opencart_var[opencart_version_select]}}" 
   
   vars_files:
     - vars/main.yml
