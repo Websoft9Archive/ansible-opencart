@@ -39,7 +39,7 @@
 
 - name: Download Opencart language package
   unarchive:
-    src: "{{ opencart_package_CN }}"
+    src: "{{ opencart_package_cn }}"
     dest: /opt
     remote_src: yes
   when: language == "cn"

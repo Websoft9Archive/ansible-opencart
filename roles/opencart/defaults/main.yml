@@ -1,5 +1,5 @@
 
-opencart_package_CN:     http://libs.websoft9.com/apps/opencart/opencart3-cnpack.zip   #中文语言包
+opencart_package_cn:     http://libs.websoft9.com/apps/opencart/opencart3-cnpack.zip   #中文语言包
 
 #OpenCart版本，需定期维护
 opencart_version: 3.0.3.2
