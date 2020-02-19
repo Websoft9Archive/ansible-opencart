@@ -3,6 +3,8 @@
   hosts: all
   become: yes
   become_method: sudo  
+  vars_files:
+    - vars/main.yml
   vars_prompt:
     - name: 'webserver_select'
       prompt: "\nWhich Web-Server do you want to use? [ 1/2 ] \n\n
@@ -29,8 +31,9 @@
     opencart_webs: "{{temp_webserver_var[webservr_select]}}"
     opencart_type: "{{temp_opencart_var[opencart_version_select]}}" 
   
-  vars_files:
-    - vars/main.yml
+  pre_tasks:
+    - include_vars: roles/role_cloud/vars/cloud_download_url.yml
+      when: region == '1' or region == 1
 
   roles:
     - {role: role_common, tags: "role_common"}
