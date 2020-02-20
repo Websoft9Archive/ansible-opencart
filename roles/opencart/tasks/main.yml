@@ -17,15 +17,8 @@
     msg: runtime {{ opencart_vhost_dir }}, {{opencart_vhost_src}}, {{opencart_service}}, {{opencart_owner}}, {{opencart_webs}}, {{ansible_distribution}}
 
 # Opencart
-- name: Remove example dir
-  file:
-    path: /data/wwwroot/www.example.com
-    state: absent
-
-- name: Remove existing dir
-  file:
-    path: /data/wwwroot/{{opencart_name}}
-    state: absent
+- name: Remove extra dir
+  shell: rm -rf /data/wwwroot/*
 
 - name: Create opencart directory
   file:
@@ -92,9 +85,6 @@
   
 - name: Rename admin/config-dist.php to config-dist.php
   shell: cp /data/wwwroot/opencart/admin/config-dist.php /data/wwwroot/opencart/admin/config.php
-
-- name: Rename directory name
-  shell: mv /data/wwwroot/* /data/wwwroot/{{opencart_name}}
 
 # 系统通用
 - name: Permission directory
