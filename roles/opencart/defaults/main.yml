@@ -4,7 +4,10 @@ opencart_package_cn:  http://libs.websoft9.com/apps/opencart/opencart3-cnpack.zi
 opencart_url: https://libs.websoft9.com/apps/opencart/opencart-v36-free-20190715.zip
 
 #OpenCart版本，需定期维护
-opencart_version: 3.0.3.2
+opencart_name: "opencart"
+opencart_title: "OpenCart"
+opencart_download_url: "https://github.com/opencart/opencart.git"
+opencart_version: "3.0.3.2"
 opencart_type: original edition
 opencart_language: en   #取值范围 [en, cn], en 为默认安装（无中文）
 

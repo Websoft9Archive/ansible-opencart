@@ -6,7 +6,7 @@
   vars_files:
     - vars/main.yml
   vars_prompt:
-    - name: 'webserver_select'
+    - name: 'webs_selection'
       prompt: "\nWhich Web-Server do you want to use? [ 1/2 ] \n\n
       1: Apache\n
       2: Nginx\n"
@@ -21,15 +21,25 @@
       default: 1
 
   vars:
-    temp_webserver_var:
+
+    webs_select:
       '1': 'apache'
       '2': 'nginx'
+
+    infrastructure_select:
+      '1': 'LAMP'
+      '2': 'LNMP'
+
     temp_opencart_var:
       '1': 'Original edition'
       '2': '光大网络版'
 
-    opencart_webs: "{{temp_webserver_var[webservr_select]}}"
-    opencart_type: "{{temp_opencart_var[opencart_version_select]}}" 
+    opencart_webs: "{{webs_select[webs_selection]}}"
+    opencart_type: "{{temp_opencart_var[opencart_version_select]}}"  
+
+    w9panel_set_infrastructure: "{{infrastructure_select[webs_selection]}}" 
+    w9panel_set_apps: 
+      - OpenCart
   
   pre_tasks:
     - include_vars: roles/role_cloud/vars/cloud_download_url.yml

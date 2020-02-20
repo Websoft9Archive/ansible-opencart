@@ -8,16 +8,13 @@
     opencart_vhost_src: "{{php_runtime_meta[ansible_distribution][opencart_webs].vhost_src}}"
     opencart_service: "{{php_runtime_meta[ansible_distribution][opencart_webs].service}}"
     opencart_owner: "{{php_runtime_meta[ansible_distribution][opencart_webs].owner}}"
+    opencart_name: "opencart"
+    opencart_title: "opencart"
+    opencart_download_url: "https://github.com/opencart/opencart.git"
+    opencart_version: "3.0.3.2"
 
 - debug:
     msg: runtime {{ opencart_vhost_dir }}, {{opencart_vhost_src}}, {{opencart_service}}, {{opencart_owner}}, {{opencart_webs}}, {{ansible_distribution}}
-
-# 9panel
-- name: Enable 9panel I
-  lineinfile:
-    path: /data/apps/9panel/js/websoft9.js
-    regexp: 'var set_apps=\["Example"\];'
-    line: 'var set_apps=["OpenCart"];'
 
 # Opencart
 - name: Remove example dir
@@ -25,9 +22,14 @@
     path: /data/wwwroot/www.example.com
     state: absent
 
+- name: Remove existing dir
+  file:
+    path: /data/wwwroot/{{opencart_name}}
+    state: absent
+
 - name: Create opencart directory
   file:
-    path: /data/wwwroot/opencart
+    path: /data/wwwroot/{{opencart_name}}
     state: directory
     mode: 0750
 
@@ -39,7 +41,7 @@
 
 - name: Download Opencart (Original edition)
   git:
-    repo: https://github.com/opencart/opencart.git
+    repo: "{{opencart_download_url}}"
     dest: /data/wwwroot/opencart1
     version: "{{opencart_version}}"
   when: opencart_type == "original edition"
