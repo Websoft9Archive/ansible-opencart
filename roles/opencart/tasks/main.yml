@@ -93,6 +93,9 @@
 - name: Rename admin/config-dist.php to config-dist.php
   shell: cp /data/wwwroot/opencart/admin/config-dist.php /data/wwwroot/opencart/admin/config.php
 
+- name: Rename directory name
+  shell: mv /data/wwwroot/* /data/wwwroot/{{opencart_name}}
+
 # 系统通用
 - name: Permission directory
   shell: find /data/wwwroot -type d -exec chmod 750 {} \;
