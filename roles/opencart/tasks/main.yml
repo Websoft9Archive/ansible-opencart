@@ -78,6 +78,9 @@
     path: /data/wwwroot/opencart1
     state: absent
 
+- name: Rename dir name
+  shell: if [ ! -d "/data/wwwroot/{{opencart_name}}" ]; then mv *{{opencart_name}}* {{opencart_name}}; fi
+
 - name: Rename config-dist.php to config-dist.php
   shell: cp /data/wwwroot/opencart/config-dist.php /data/wwwroot/opencart/config.php
   
