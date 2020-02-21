@@ -8,17 +8,15 @@
     opencart_vhost_src: "{{php_runtime_meta[ansible_distribution][opencart_webs].vhost_src}}"
     opencart_service: "{{php_runtime_meta[ansible_distribution][opencart_webs].service}}"
     opencart_owner: "{{php_runtime_meta[ansible_distribution][opencart_webs].owner}}"
-    opencart_name: "opencart"
-    opencart_title: "opencart"
-    opencart_download_url: "https://github.com/opencart/opencart.git"
-    opencart_version: "3.0.3.2"
 
 - debug:
     msg: runtime {{ opencart_vhost_dir }}, {{opencart_vhost_src}}, {{opencart_service}}, {{opencart_owner}}, {{opencart_webs}}, {{ansible_distribution}}
 
 # Opencart
 - name: Remove extra dir
-  shell: rm -rf /data/wwwroot/*
+  shell: |
+    rm -rf /data/wwwroot/www.example.com
+    rm -rf /data/wwwroot/{{opencart_name}}
 
 - name: Create opencart directory
   file:
