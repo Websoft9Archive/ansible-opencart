@@ -3,13 +3,12 @@
 ## To do
 
 * 添加 Nginx 支持
-* 添加 Ubuntu18.04, Amazon Linux2 支持
+* 添加 Ubuntu18.04支持
 
 ## Logs
 
 ### Bug Fixes
 * 2020-02-20  修复变量替换问题
-
 * 2020-02-14  改写OpenCart项目
 
 ### Features
