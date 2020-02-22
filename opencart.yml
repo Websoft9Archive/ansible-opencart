@@ -34,9 +34,10 @@
       '1': 'Original edition'
       '2': '光大网络版'
 
-    opencart_webs: "{{webs_select[webs_selection]}}"
     opencart_type: "{{temp_opencart_var[opencart_version_select]}}"  
-
+    opencart_webs: "{{webs_select[webs_selection]}}"
+    phpmyadmin_webs: "{{webs_select[webs_selection]}}" 
+    w9panel_webs: "{{webs_select[webs_selection]}}" 
     w9panel_set_infrastructure: "{{infrastructure_select[webs_selection]}}" 
     w9panel_set_apps: 
       - OpenCart
