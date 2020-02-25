@@ -40,46 +40,10 @@
 - name: Rename dir name
   shell: cd /data/wwwroot; if [ ! -d "{{opencart_name}}" ]; then mv *{{opencart_name}}* {{opencart_name}}; fi
 
-- block:
-  - name: Download OpenCart language package
-    unarchive:
-      src: "{{ opencart_package_cn }}"
-      dest: /opt
-      remote_src: yes
-
-  - name: move language sql to opencart source directory
-    shell: mv -f /opt/opencart/upload/install/opencart.sql /data/wwwroot/opencart1/upload/install/
-
-  - name: delete sql file
-    file:
-      path: /opt/opencart/upload/install/opencart.sql
-      state: absent
-
-  - name: move language package to opencart source code
-    shell: cp -rf /opt/opencart/upload/* /data/wwwroot/opencart1/upload/
-
-  - name: delete language package
-    file: 
-      path: /opt/opencart
-      state: absent
-
-  when:  opencart_language == "cn" and opencart_type == "original edition"
-
-- name: move upload directory to opencart 
-  shell: mv /data/wwwroot/opencart1/upload/* /data/wwwroot/opencart
-
-- name: delete opencart1 directory
-  file: 
-    path: /data/wwwroot/opencart1
-    state: absent
-
-- name: Rename dir name
-  shell: cd /data/wwwroot; if [ ! -d "{{opencart_name}}" ]; then mv *{{opencart_name}}* {{opencart_name}}; fi
-
-- name: Rename config-dist.php to config-dist.php
+- name: Rename config-dist.php to config.php
   shell: cp /data/wwwroot/opencart/config-dist.php /data/wwwroot/opencart/config.php
   
-- name: Rename admin/config-dist.php to config-dist.php
+- name: Rename admin/config-dist.php to config.php
   shell: cp /data/wwwroot/opencart/admin/config-dist.php /data/wwwroot/opencart/admin/config.php
 
 # 系统通用

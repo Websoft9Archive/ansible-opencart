@@ -40,6 +40,7 @@ Ansible Role: phpmyadmin
 | phpmyadmin_mysql_password | [ "123456"] | 字符串 |是|
 | phpmyadmin_php_version | [ "5.4", "5.5",., "7.2" ] | 字符串 |是|
 | phpmyadmin_download_url | ["old": url,  "new": url ]   | 字典 |应用于国内加速|
+| phpmyadmin_runtime_meta | [...]   | 字典 |无|
 
 注意：
 1. phpmyadmin_download_url 初始化在 *[role_cloud](https://github.com/websoft9dev/role_cloud/blob/master/vars/cloud_download_url.yml)* 中统一修改
