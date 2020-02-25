@@ -1,8 +1,11 @@
 ---
 - block:
-  - name: Check HTTP Server type
-    shell: "curl -Is http://127.0.0.1 | grep 'Server' |awk -F ': ' '{print $2}'|tr 'A-Z' 'a-z'"
-    register: http_type
+  - set_fact: 
+      phpmyadmin_owner: "www-data"
+    when: ansible_os_family == 'Debian'
+  - set_fact: 
+      phpmyadmin_owner: "{{ phpmyadmin_webs }}"
+    when: ansible_os_family == 'RedHat'
     
   - name: Check whether the local machine contains MySQL
     shell: curl -Is 127.0.0.1:3306 > /dev/null;echo $?
@@ -12,28 +15,33 @@
     file: 
         path: /data/apps
         state: directory
-        owner: "{{http_type.stdout}}"
-        group: "{{http_type.stdout}}"
-        mode: 0755
+        owner: "{{phpmyadmin_owner}}"
+        group: "{{phpmyadmin_owner}}"
+        mode: 0750
 
-  - name: Dowload phpMyAdmin
+  - name: Remove phpmyadmin if it exist
+    shell: |
+      rm -rf /data/apps/*phpmyadmin*
+      rm -rf /data/apps/*phpMyAdmin*
+
+  - name: Download phpMyAdmin
     unarchive:
-      src: https://files.phpmyadmin.net/phpMyAdmin/4.0.10.20/phpMyAdmin-4.0.10.20-all-languages.zip
+      src: "{{phpmyadmin_download_url.old}}"
       dest: /data/apps
       remote_src: yes
-    when: phpver == "54"
+    when: phpmyadmin_php_version <= "5.4"
 
-  - name: Dowload phpMyAdmin
+  - name: Download phpMyAdmin
     unarchive:
-      src: https://files.phpmyadmin.net/phpMyAdmin/4.9.1/phpMyAdmin-4.9.1-all-languages.zip
+      src: "{{phpmyadmin_download_url.new}}"
       dest: /data/apps
       remote_src: yes
-    when: phpver != "54"
+    when: phpmyadmin_php_version > "5.5"
 
   - name: phpMyadmin directory rename
-    shell: mv /data/apps/phpMyAdmin-* /data/apps/phpmyadmin
+    shell: cd /data/apps; if [ ! -d "phpmyadmin" ]; then mv *phpMyAdmin* phpmyadmin; fi
+    ignore_errors: True
   
-
   - name: phpMyadmin Configuration
     copy: 
       src: config.inc.php
@@ -48,7 +56,7 @@
         name: phpmyadmin
         state: import
         target: /data/apps/phpmyadmin/examples/create_tables.sql
-      when: phpver == "54"
+      when: phpmyadmin_php_version <= "5.4"
 
     - name: Active phpMyAdmin 4.x Advanced Features
       mysql_db:
@@ -58,7 +66,7 @@
         name: phpmyadmin
         state: import
         target: /data/apps/phpmyadmin/sql/create_tables.sql
-      when: phpver != "54"
+      when: phpmyadmin_php_version >= "5.5"
     when: check_mysqlserver.stdout == '0'
 
 
@@ -74,31 +82,33 @@
   - name: change phpMyadmin permission
     file: 
       path: /data/apps/phpmyadmin
-      group: "{{http_type.stdout}}"
-      owner: "{{http_type.stdout}}"
+      group: "{{phpmyadmin_owner}}"
+      owner: "{{phpmyadmin_owner}}"
       recurse: yes
       state: directory
   
-  - block: # phpMyAdmin Apache
+  # phpMyAdmin Apache
+  - block: 
     - name: Copy phpMyAdmin Configuration for apache
       copy: src=phpMyAdmin-apache.conf dest=/etc/httpd/conf.d/phpMyAdmin.conf
     
     - name: apache service restart
       service: name=httpd state=restarted
 
-    when: http_type.stdout == 'apache'
+    when: phpmyadmin_webs == 'apache'
 
 
-  - block: # phpMyAdmin Nginx
+  # phpMyAdmin Nginx
+  - block: 
     - name: Copy phpMyAdmin Configuration for nginx
       copy: src=phpMyAdmin-nginx.conf dest=/etc/nginx/extra/phpmyadmin.conf
       
-    - name: apache service restart
+    - name: nginx service restart
       service: name=nginx state=restarted
 
-    when: http_type.stdout == 'nginx'
+    when: phpmyadmin_webs == 'nginx'
 
-  when: ansible_distribution == 'CentOS'
+  when: ansible_os_family == 'RedHat'
 
-- debug: msg="Not Support Ubuntu"
-  when: ansible_distribution == 'Ubuntu'
+- debug: msg="Not Support Ubuntu this time, coming soon..."
+  when: ansible_os_family == 'Debian'

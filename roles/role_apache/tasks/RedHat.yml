@@ -1,7 +1,7 @@
 - block:
   - name: install the IUS rpm from a remote repo
     yum:
-      name: https://rhel7.iuscommunity.org/ius-release.rpm
+      name: "{{apache_ius_url}}"
       state: present
 
   - name: Install Apache
@@ -13,19 +13,6 @@
   yum:
     name: [httpd,mod_ssl]
   when: ansible_distribution_major_version == '8'
-
-- name: Install Certbot
-  yum:
-    name: [certbot,certbot-apache]
-  ignore_errors: yes
-
-- name: Set up automatic renewal
-  shell: echo "0 0,12 * * * root python -c 'import random; import time; time.sleep(random.random() * 3600)' && /usr/local/bin/certbot-auto renew" | sudo tee -a /etc/crontab > /dev/null
-
-- pip:
-    name: [requests==2.6.0,urllib3]
-    extra_args: --upgrade --force-reinstall --ignore-installed
-
 
 - name: Configure Apache
   copy:
@@ -64,7 +51,7 @@
 
 - name: Link Apache service
   file:
-    src: /usr/lib/systemd/system/httd.service
+    src: /usr/lib/systemd/system/httpd.service
     dest: /usr/lib/systemd/system/apache.service
     state: link
 

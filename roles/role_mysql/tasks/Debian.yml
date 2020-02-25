@@ -16,9 +16,8 @@
 - name: Change MySQL Directory
   shell: |
     systemctl stop mysql
+    rm -rf /data/mysql
     rsync -av /var/lib/mysql /data/
-    mv /var/lib/mysql /var/lib/mysql.bak
-    mkdir /var/lib/mysql/mysql -p
     sed  -i 's/\/var\/lib\/mysql/\/data\/mysql/'  /etc/mysql/mysql.conf.d/mysqld.cnf
     echo "alias /var/lib/mysql/ -> /data/mysql/," >> /etc/apparmor.d/tunables/alias
     systemctl restart apparmor
@@ -36,15 +35,23 @@
     login_password: "{{mysql_root_password}}"
     name: ''
     host_all: yes
+    login_unix_socket: /var/run/mysqld/mysqld.sock
     state: absent
 
 - name: Remove hostname user accounts
-  mysql_user: login_user=root login_password={{mysql_root_password}} name='root' host={{ ansible_nodename }} state=absent
+  mysql_user: 
+    login_user: root 
+    login_password: "{{mysql_root_password}}" 
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: root
+    host: "{{ ansible_nodename }}" 
+    state: absent
 
 - name: Removes test Databases
   mysql_db:
     login_user: root
     login_password: "{{mysql_root_password}}"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
     name: test
     state: absent
 

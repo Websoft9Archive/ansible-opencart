@@ -8,11 +8,9 @@
     name: 'gcc'
   when: ansible_os_family == 'Debian'
 
-
-
-- name: Download Redis Source Code
+- name: Download Redis Source Code from {{redis_download_url}}
   unarchive:
-    src: http://download.redis.io/releases/redis-{{redis_version}}.tar.gz
+    src: "{{redis_download_url}}/redis-{{redis_version}}.tar.gz"
     dest: /opt/
     remote_src: yes
 
@@ -21,7 +19,7 @@
   args:
     chdir: /opt/redis-{{redis_version}}
 
-- name: Delte redis source code
+- name: Delete redis source code
   file:
     path: /opt/redis-{{redis_version}}
     state: absent
@@ -66,5 +64,4 @@
   register: redis_version
   args:
     executable: /bin/bash
-  notify: [redis Version,Check redis Server]
-
+  notify: redis Version
