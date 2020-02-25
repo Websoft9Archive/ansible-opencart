@@ -24,7 +24,7 @@
 
 - name: Git OpenCart from {{opencart_download_url.original}}
   git:
-    repo: "{{opencart_download_url[original]}}"
+    repo: "{{opencart_download_url.original}}"
     dest: /data/wwwroot/{{opencart_name}}
     version: "{{opencart_version}}"
   when: opencart_distribution == "original"
