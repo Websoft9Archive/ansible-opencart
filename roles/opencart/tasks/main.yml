@@ -22,27 +22,28 @@
     state: directory
     mode: 0750
 
-- name: Git OpenCart from {{opencart_download_url.original}}
+- name: Git OpenCart from {{opencart_distribution_meta[opencart_distribution].download_url}}
   git:
-    repo: "{{opencart_download_url.original}}"
+    repo: "{{opencart_distribution_meta[opencart_distribution].download_url}}"
     dest: /data/wwwroot/{{opencart_name}}
-    version: "{{opencart_version.original}}"
+    version: "{{opencart_distribution_meta[opencart_distribution].version}}"
   when: opencart_distribution == "original"
 
-- name: Get OpenCart from {{opencart_download_url.chinese}}
+- name: Get OpenCart from {{opencart_distribution_meta[opencart_distribution].download_url}}
   unarchive:
-    src: "{{opencart_download_url.chinese}}"
+    src: "{{opencart_distribution_meta[opencart_distribution].download_url}}"
     dest: /data/wwwroot/{{opencart_name}}
     remote_src: yes
   when: opencart_distribution == "chinese"
 
-- name: Rename dir name
+- name: Rename dir name for more times installation
   shell: cd /data/wwwroot; if [ ! -d "{{opencart_name}}" ]; then mv *{{opencart_name}}* {{opencart_name}}; fi
 
 - name: Rename config-dist.php to config.php
   shell: |
-    cp /data/wwwroot/opencart/upload/config-dist.php /data/wwwroot/opencart/upload/config.php
-    cp /data/wwwroot/opencart/upload/admin/config-dist.php /data/wwwroot/opencart/upload/admin/config.php
+    cp /data/wwwroot/opencart/config-dist.php /data/wwwroot/opencart/config.php
+    cp /data/wwwroot/opencart/admin/config-dist.php /data/wwwroot/opencart/admin/config.php
+  when: opencart_distribution == "original"
 
 # 系统通用
 - name: Permission directory
@@ -52,11 +53,12 @@
 
 # 根据不同的基础环境分别处理
 - block:
-  - name: change owner&group
-    shell: chown -R {{opencart_owner}}:{{opencart_owner}} /data/wwwroot
 
   - name: Copy Apache or Nginx vhost configuration
-    copy: src={{opencart_vhost_src}} dest={{opencart_vhost_dir}}
+    template: src={{opencart_vhost_src}} dest={{opencart_vhost_dir}}
+
+  - name: change owner&group
+    shell: chown -R {{opencart_owner}}:{{opencart_owner}} /data/wwwroot
     
   - name: restart Apache or Nginx
     service: name={{opencart_service}} state=restarted enabled=yes
