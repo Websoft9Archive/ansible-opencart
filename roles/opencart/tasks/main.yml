@@ -4,49 +4,44 @@
 
 #Modify var for this playbook
 - set_fact:
-    opencart_vhost_dir: "{{php_runtime_meta[ansible_distribution][opencart_webs].vhost_dir}}"
-    opencart_vhost_src: "{{php_runtime_meta[ansible_distribution][opencart_webs].vhost_src}}"
-    opencart_service: "{{php_runtime_meta[ansible_distribution][opencart_webs].service}}"
-    opencart_owner: "{{php_runtime_meta[ansible_distribution][opencart_webs].owner}}"
+    opencart_vhost_dir: "{{php_runtime_meta[ansible_os_family][opencart_webs].vhost_dir}}"
+    opencart_vhost_src: "{{php_runtime_meta[ansible_os_family][opencart_webs].vhost_src}}"
+    opencart_service: "{{php_runtime_meta[ansible_os_family][opencart_webs].service}}"
+    opencart_owner: "{{php_runtime_meta[ansible_os_family][opencart_webs].owner}}"
 
 - debug:
     msg: runtime {{ opencart_vhost_dir }}, {{opencart_vhost_src}}, {{opencart_service}}, {{opencart_owner}}, {{opencart_webs}}, {{ansible_distribution}}
 
 # Opencart
 - name: Remove extra dir
-  shell: |
-    rm -rf /data/wwwroot/www.example.com
-    rm -rf /data/wwwroot/{{opencart_name}}
+  shell: rm -rf /data/wwwroot/*{{opencart_name}}*
 
-- name: Create opencart directory
+- name: Create OpenCart directory
   file:
     path: /data/wwwroot/{{opencart_name}}
     state: directory
     mode: 0750
 
-- name: Create opencart1 folder
-  file:
-    path: /data/wwwroot/opencart1
-    state: directory
-    mode: 0750
-
-- name: Download Opencart (Original edition)
+- name: Git OpenCart from {{opencart_download_url[original]}}
   git:
-    repo: "{{opencart_download_url}}"
-    dest: /data/wwwroot/opencart1
+    repo: "{{opencart_download_url[original]}}"
+    dest: /data/wwwroot/{{opencart_name}}
     version: "{{opencart_version}}"
-  when: opencart_type == "original edition"
+  when: opencart_distribution == "original"
 
-- name: Download Opencart (光大网络版)
+
+- name: Git OpenCart from {{opencart_download_url[chinese]}}
   unarchive:
-    url: "{{opencart_url}}"
-    dest: /data/wwwroot/opencart1
-    mode: 0750
+    src: "{{opencart_download_url[chinese]}}"
+    dest: /data/wwwroot/{{opencart_name}}
     remote_src: yes
-  when: opencart_type == "光大网络版"
+  when: opencart_distribution == "chinese"
+
+- name: Rename dir name
+  shell: cd /data/wwwroot; if [ ! -d "{{opencart_name}}" ]; then mv *{{opencart_name}}* {{opencart_name}}; fi
 
 - block:
-  - name: Download Opencart language package
+  - name: Download OpenCart language package
     unarchive:
       src: "{{ opencart_package_cn }}"
       dest: /opt
@@ -89,10 +84,9 @@
 
 # 系统通用
 - name: Permission directory
-  shell: find /data/wwwroot -type d -exec chmod 750 {} \;
-  
-- name: Permission file
-  shell: find /data/wwwroot -not -type d -exec chmod 640 {} \;
+  shell: |
+     find /data/wwwroot -type d -exec chmod 750 {} \;
+     find /data/wwwroot -not -type d -exec chmod 640 {} \;
 
 # 根据不同的基础环境分别处理
 - block:

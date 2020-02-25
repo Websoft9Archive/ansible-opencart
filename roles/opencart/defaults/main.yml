@@ -3,8 +3,11 @@ opencart_package_cn:  http://libs.websoft9.com/apps/opencart/opencart3-cnpack.zi
 
 opencart_url: https://libs.websoft9.com/apps/opencart/opencart-v36-free-20190715.zip
 
-opencart_type: original edition
-opencart_language: en   #取值范围 [en, cn], en 为默认安装（无中文）
+#original | chinese
+opencart_distribution: original
+
+# en | cn, 默认没有中文
+opencart_language: en  
 
 #Web服务器：apache | nginx，通过交互式选择获取
 opencart_webs: apache
@@ -15,5 +18,11 @@ opencart_service: httpd
 opencart_owner: apache
 opencart_name: "opencart"
 opencart_title: "OpenCart"
-opencart_download_url: "https://github.com/opencart/opencart.git"
-opencart_version: "3.0.3.2"  #版本号需定期维护
+
+#github下载的版本号需定期维护
+opencart_download_url: 
+  "original": "https://github.com/opencart/opencart.git"
+  "chinese": "https://libs.websoft9.com/apps/opencart/opencart-v36-free-20190715.zip"
+opencart_version: 
+  "original": "3.0.3.2"  
+  "chinese": ""
