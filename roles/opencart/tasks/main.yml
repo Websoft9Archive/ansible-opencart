@@ -22,21 +22,13 @@
     state: directory
     mode: 0750
 
-- name: Git OpenCart from {{opencart_distribution_meta[opencart_distribution].download_url}}
-  git:
-    repo: "{{opencart_distribution_meta[opencart_distribution].download_url}}"
-    dest: /data/wwwroot/{{opencart_name}}
-    version: "{{opencart_distribution_meta[opencart_distribution].version}}"
-  when: opencart_distribution == "original"
-
 - name: Get OpenCart from {{opencart_distribution_meta[opencart_distribution].download_url}}
   unarchive:
     src: "{{opencart_distribution_meta[opencart_distribution].download_url}}"
     dest: /data/wwwroot/{{opencart_name}}
     remote_src: yes
-  when: opencart_distribution == "chinese"
 
-- name: Rename dir name for more times installation
+- name: Rename opencart folder for many times re-installation
   shell: cd /data/wwwroot; if [ ! -d "{{opencart_name}}" ]; then mv *{{opencart_name}}* {{opencart_name}}; fi
 
 - name: Rename config-dist.php to config.php

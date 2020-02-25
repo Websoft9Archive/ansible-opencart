@@ -18,7 +18,7 @@
 
 ## 组件
 
-包含的核心组件为：opencart + Apache/Nginx + MySQL + PHP
+包含的核心组件为：opencart官方原版 或 Opencart中文版 + Apache/Nginx + MySQL + PHP
 
 更多请见：[参数表](/docs/zh/stack-components.md)
 
@@ -27,11 +27,21 @@
 本项目通过下载[opencart源码](https://github.com/opencart/opencart)进行安装，其中版本号存储在：[role/opencart/default/main.yml](/roles/opencart/defaults/main.yml)
 
 ```
-#opencart版本，需定期维护
-opencart_version: 3.0.3.2
-```
+#两个发行版的元数据。Opencart Github上的项目有18万个文件，不使用Git clone
+opencart_distribution_meta:
 
-如果你想修改版本号，请先查看 opencart 仓库 [tags](https://github.com/opencart/opencart/tags) 标签值，再修改上面的 `opencart_version` 变量值。
+  original:
+    download_url: "https://github.com/opencart/opencart/releases/download/3.0.3.2/opencart-3.0.3.2.zip"
+    documentroot: "upload"
+  
+  chinese:
+    download_url: "https://libs.websoft9.com/apps/opencart/opencart-v36-free-20190715.zip"
+    documentroot: "upload"
+```
+如果你想修改版本号：
+
+- 官方原版（original）：请先查看 opencart 仓库 [releases](https://github.com/opencart/opencart/releases) 标签，获取 `opencart-3.0.3.2.zip`的下载链接，再修改上面的 `download_url` 变量值。
+- 中文版（chinese）：请先到官方[下载中心](https://www.opencart.cn/download#anchor-download)，下载后上传到自建的OSS中，然后修改上面的 `download_url` 变量值。
 
 我们会定期检查版本，并测试官方版本的可用性，以保证用户可以顺利安装最新版。
 
