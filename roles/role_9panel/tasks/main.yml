@@ -9,19 +9,14 @@
     w9panel_owner: "{{ w9panel_webs }}"
   when: ansible_os_family == 'RedHat'
 
+- debug:
+    msg: owner is {{w9panel_owner}}
+
 - name: Remove 9panel and example folder if exist
   shell: |
     rm -rf /data/apps/9panel
     rm -rf /data/wwwroot/www.example.com
     
-- name: Create apps directory
-  file: 
-    path: /data/apps
-    state: directory
-    owner: "{{phpmyadmin_owner}}"
-    group: "{{phpmyadmin_owner}}"
-    mode: 0750
-
 # Download,unzip,rename 9panel from different region
 
 - name: Download 9panel from Github
@@ -89,20 +84,19 @@
 
 #System settings for 9panel
 
-- name: Change apps directory Own
+- name: Change /data/apps directory Owner
   file: 
       path: /data/apps
-      owner: "{{w9panel_webs}}"
-      group: "{{w9panel_webs}}"
+      owner: "{{w9panel_owner}}"
+      group: "{{w9panel_owner}}"
       recurse: yes
 
-- name: Change apps directory Own
+- name: Change /data/wwwroot directory Owner
   file: 
-      path: /data/data/www.example.com
-      owner: "{{w9panel_webs}}"
-      group: "{{w9panel_webs}}"
+      path: /data/wwwroot
+      owner: "{{w9panel_owner}}"
+      group: "{{w9panel_owner}}"
       recurse: yes
-  when: w9panel_set_apps[0] == 'Example'
 
 - block:
   - name: Copy 9panel Configuration
@@ -120,4 +114,4 @@
   - name: restart Nginx
     service: name=nginx state=restarted enabled=yes
 
-  when: w9panel_owner == "nginx"
+  when: w9panel_webs == "nginx"

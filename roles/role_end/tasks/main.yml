@@ -21,6 +21,6 @@
   when: init == '1' or init == 1
 
 
-- name: Reboot the server
+- name: Reboot 
   reboot:
   when: init == '0' or init == 0

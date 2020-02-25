@@ -6,6 +6,9 @@
   - set_fact: 
       phpmyadmin_owner: "{{ phpmyadmin_webs }}"
     when: ansible_os_family == 'RedHat'
+  
+  - debug:
+      msg: owner is {{phpmyadmin_owner}}
     
   - name: Check whether the local machine contains MySQL
     shell: curl -Is 127.0.0.1:3306 > /dev/null;echo $?
@@ -15,14 +18,18 @@
     file: 
         path: /data/apps
         state: directory
-        owner: "{{phpmyadmin_owner}}"
-        group: "{{phpmyadmin_owner}}"
         mode: 0750
 
   - name: Remove phpmyadmin if it exist
     shell: |
       rm -rf /data/apps/*phpmyadmin*
       rm -rf /data/apps/*phpMyAdmin*
+  
+  - name: Create apps directory
+    file: 
+        path: /data/apps
+        state: directory
+        mode: 0750
 
   - name: Download phpMyAdmin
     unarchive:
@@ -68,8 +75,6 @@
         target: /data/apps/phpmyadmin/sql/create_tables.sql
       when: phpmyadmin_php_version >= "5.5"
     when: check_mysqlserver.stdout == '0'
-
-
    
   - name: allow login to any user entered server in cookie based authentication 
     lineinfile:

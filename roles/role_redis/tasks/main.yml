@@ -31,7 +31,7 @@
   with_items:
     - /etc/redis
     - /data/redis
-    - /log/redis
+    - /var/log/redis
 
 - name: Copy redis config
   copy:

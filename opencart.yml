@@ -15,8 +15,8 @@
 
     - name: 'distribution_selection'
       prompt: "\nWhich distribution of OpenCart do you want to install? [ 1/2 ] \n\n
-      1. Official original
-      2. Chinese"
+      1. Official original\n
+      2. Chinese\n"
       private: no
       default: 1
 
@@ -65,4 +65,4 @@
     - {role: opencart, tags: "opencart"}
     - {role: role_init_password, tags: "role_init_password"}
     - {role: role_preend, tags: "role_preend"}
-    - {role: role_end, tags: "role_end"}
+    #- {role: role_end, tags: "role_end"}
