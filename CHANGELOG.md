@@ -4,7 +4,7 @@
 
 * 测试 Nginx 支持
 * 测试 Ubuntu18.04支持
-* 测试 Original版本（国内git下载失败，无法测试）
+* 测试 Original版本（下载太慢，改天再试）
 
 ## Logs
 
