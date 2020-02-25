@@ -22,17 +22,16 @@
     state: directory
     mode: 0750
 
-- name: Git OpenCart from {{opencart_download_url[original]}}
+- name: Git OpenCart from {{opencart_download_url.original}}
   git:
     repo: "{{opencart_download_url[original]}}"
     dest: /data/wwwroot/{{opencart_name}}
     version: "{{opencart_version}}"
   when: opencart_distribution == "original"
 
-
-- name: Git OpenCart from {{opencart_download_url[chinese]}}
+- name: Get OpenCart from {{opencart_download_url.chinese}}
   unarchive:
-    src: "{{opencart_download_url[chinese]}}"
+    src: "{{opencart_download_url.chinese}}"
     dest: /data/wwwroot/{{opencart_name}}
     remote_src: yes
   when: opencart_distribution == "chinese"
