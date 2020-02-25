@@ -26,7 +26,7 @@
   git:
     repo: "{{opencart_download_url.original}}"
     dest: /data/wwwroot/{{opencart_name}}
-    version: "{{opencart_version}}"
+    version: "{{opencart_version.original}}"
   when: opencart_distribution == "original"
 
 - name: Get OpenCart from {{opencart_download_url.chinese}}
@@ -40,10 +40,9 @@
   shell: cd /data/wwwroot; if [ ! -d "{{opencart_name}}" ]; then mv *{{opencart_name}}* {{opencart_name}}; fi
 
 - name: Rename config-dist.php to config.php
-  shell: cp /data/wwwroot/opencart/config-dist.php /data/wwwroot/opencart/config.php
-  
-- name: Rename admin/config-dist.php to config.php
-  shell: cp /data/wwwroot/opencart/admin/config-dist.php /data/wwwroot/opencart/admin/config.php
+  shell: |
+    cp /data/wwwroot/opencart/upload/config-dist.php /data/wwwroot/opencart/upload/config.php
+    cp /data/wwwroot/opencart/upload/admin/config-dist.php /data/wwwroot/opencart/upload/admin/config.php
 
 # 系统通用
 - name: Permission directory
