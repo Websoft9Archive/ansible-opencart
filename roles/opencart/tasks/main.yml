@@ -16,12 +16,6 @@
 - name: Remove extra dir
   shell: rm -rf /data/wwwroot/*{{opencart_name}}*
 
-- name: Create OpenCart directory
-  file:
-    path: /data/wwwroot/{{opencart_name}}
-    state: directory
-    mode: 0750
-
 - name: Get OpenCart from {{opencart_distribution_meta[opencart_distribution].download_url}}
   unarchive:
     src: "{{opencart_distribution_meta[opencart_distribution].download_url}}"
