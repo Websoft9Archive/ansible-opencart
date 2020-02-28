@@ -8,6 +8,7 @@
     opencart_vhost_src: "{{php_runtime_meta[ansible_os_family][opencart_webs].vhost_src}}"
     opencart_service: "{{php_runtime_meta[ansible_os_family][opencart_webs].service}}"
     opencart_owner: "{{php_runtime_meta[ansible_os_family][opencart_webs].owner}}"
+    opencart_db_password: "{{mysql_root_password}}"
 
 - debug:
     msg: runtime {{ opencart_vhost_dir }}, {{opencart_vhost_src}}, {{opencart_service}}, {{opencart_owner}}, {{opencart_webs}}, {{ansible_distribution}}
@@ -48,3 +49,6 @@
     
   - name: restart Apache or Nginx
     service: name={{opencart_service}} state=restarted enabled=yes
+
+  - name: restart php-fpm
+    service: name=php-fpm state=restarted

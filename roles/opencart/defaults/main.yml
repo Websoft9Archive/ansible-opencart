@@ -20,5 +20,6 @@ opencart_vhost_dir: /etc/httpd/vhost
 opencart_vhost_src: vhost.conf
 opencart_service: httpd
 opencart_owner: apache
+opencart_db_password: "123456"
 opencart_name: "opencart"
 opencart_title: "OpenCart"
