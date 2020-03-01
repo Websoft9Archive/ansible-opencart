@@ -33,8 +33,8 @@
 
 - name: Rename config-dist.php to config.php
   shell: |
-    cp /data/wwwroot/opencart/config-dist.php /data/wwwroot/opencart/config.php
-    cp /data/wwwroot/opencart/admin/config-dist.php /data/wwwroot/opencart/admin/config.php
+    cp /data/wwwroot/opencart/upload/config-dist.php /data/wwwroot/opencart/upload/config.php
+    cp /data/wwwroot/opencart/upload/admin/config-dist.php /data/wwwroot/opencart/upload/admin/config.php
   when: opencart_distribution == "original"
 
 # 系统通用
