@@ -40,8 +40,8 @@ opencart_distribution_meta:
 ```
 如果你想修改版本号：
 
-- 官方原版（original）：请先查看 opencart 仓库 [releases](https://github.com/opencart/opencart/releases) 标签，获取 `opencart-3.0.3.2.zip`的下载链接，再修改上面的 `download_url` 变量值。
-- 中文版（chinese）：请先到官方[下载中心](https://www.opencart.cn/download#anchor-download)，下载后上传到自建的OSS中，然后修改上面的 `download_url` 变量值。
+- 官方原版（original）：请先查看 opencart 仓库 [releases](https://github.com/opencart/opencart/releases) 页面，获取 opencart 指定版本的下载链接，再修改 [role/opencart/default/main.yml](/roles/opencart/defaults/main.yml) 文件中的 `download_url` 变量值。
+- 中文版（chinese）：请先到官方[下载中心](https://www.opencart.cn/download#anchor-download)，下载后上传到自建的OSS中，然后修改 [role/opencart/default/main.yml](/roles/opencart/defaults/main.yml) 文件中的 `download_url` 变量值。
 
 我们会定期检查版本，并测试官方版本的可用性，以保证用户可以顺利安装最新版。
 
