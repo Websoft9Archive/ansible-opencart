@@ -19,18 +19,9 @@ mysql_users:
    host: localhost
    priv: 'opencart.*:ALL'
 
-# 初始化MySQL root密码
+# init all users password for MySQL
 init_db: 
-    mysql:
-      user: root
-      password: "123456"  
-  
-# 应用数据库信息
-init_application:
-  opencart:
-    service: php-fpm
-    database: opencart 
-    database_user: opencart
-    database_host: localhost
-    database_password: "123456"
-    
+  mysql:
+    admin: root
+    users: ["opencart"]
+    password: "123456" 
