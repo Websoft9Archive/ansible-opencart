@@ -1,18 +1,16 @@
-#全局
-region: "1"
+# Global
+region: "0"
 
-# MySQL 版本和默认密码
 mysql_version: "5.7"       
 mysql_root_password: "123456"
 phpmyadmin_mysql_password: "123456"
 php_version: "7.2"
 
-preend_certbot: True
+apache_certbot: True
+nginx_certbot: True
 
-# 生成应用数据库和用户
 mysql_databases:
  - name: opencart
-   encoding: utf8
  
 mysql_users:
  - name: opencart
