@@ -13,7 +13,7 @@ opencart_distribution_meta:
     documentroot: "upload"
   
   chinese:
-    download_url: "https://libs.websoft9.com/apps/opencart/opencart-v36-free-20190715.zip"
+    download_url: "https://www.opencart.cn/download/12"
     documentroot: "upload"
   
 opencart_vhost_dir: /etc/httpd/vhost
