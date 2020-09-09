@@ -12,6 +12,7 @@
 
 ### Bug Fixes
 
+* 2020-09-09  upload Chinese opencart.zip to this repository 
 * 2020-02-20  修复变量替换问题
 * 2020-02-14  改写OpenCart项目
 
