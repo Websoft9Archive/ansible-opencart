@@ -24,7 +24,7 @@
 
 ## 本项目安装的是 opencart 最新版吗？
 
-本项目通过下载[opencart源码](https://github.com/opencart/opencart)进行安装，其中版本号存储在：[role/opencart/default/main.yml](/roles/opencart/defaults/main.yml)
+本项目通过下载[opencart源码](https://github.com/opencart/opencart)进行安装，其中版本号存储在：[main.yml](/roles/opencart/defaults/main.yml)
 
 ```
 #两个发行版的元数据。Opencart Github上的项目有18万个文件，不使用Git clone
@@ -41,7 +41,7 @@ opencart_distribution_meta:
 如果你想修改版本号：
 
 - 官方原版（original）：请先查看 opencart 仓库 [releases](https://github.com/opencart/opencart/releases) 页面，获取 opencart 指定版本的下载链接，再修改 [role/opencart/default/main.yml](/roles/opencart/defaults/main.yml) 文件中的 `download_url` 变量值。
-- 中文版（chinese）：请先到官方[下载中心](https://www.opencart.cn/download#anchor-download)，下载后上传到本项目的 role/opencart/files 目录下，然后修改 [role/opencart/default/main.yml](/roles/opencart/defaults/main.yml) 文件中的 `download_url` 变量值。
+- 中文版（chinese）：请先到官方[下载中心](https://www.opencart.cn/download#anchor-download)，下载后上传到本项目的 role/opencart/files 目录下，然后修改 [main.yml](/roles/opencart/defaults/main.yml) 文件中的 `download_url` 变量值。
 
 我们会定期检查版本，并测试官方版本的可用性，以保证用户可以顺利安装最新版。
 
