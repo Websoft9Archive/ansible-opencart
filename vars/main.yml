@@ -10,14 +10,18 @@ docker_applications:
   - phpmyadmin
 
 apache_certbot: True
+apache_appname: "opencart"
+apache_vhost_mode: "www"
+
 nginx_certbot: True
+nginx_appname: "opencart"
+nginx_vhost_mode: "www"
 
 mysql_databases:
  - name: opencart
  
 mysql_users:
  - name: opencart
-   host: localhost
    priv: 'opencart.*:ALL'
 
 # init all users password for MySQL
