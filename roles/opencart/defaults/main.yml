@@ -13,7 +13,7 @@ opencart_distribution_meta:
     documentroot: "upload"
   
   chinese:
-    download_url: "https://github.com/Websoft9/ansible-opencart/raw/master/roles/opencart/files/opencart-v37-free-20200811.zip"
+    download_url: "https://github.com/Websoft9/ansible-opencart/raw/main/roles/opencart/files/opencart-v37-free-20200811.zip"
     documentroot: "upload"
   
 opencart_vhost_dir: /etc/httpd/vhost
