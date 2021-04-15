@@ -9,7 +9,7 @@ opencart_distribution: original
 opencart_distribution_meta:
 
   original:
-    download_url: "https://github.com/opencart/opencart/releases/download/3.0.3.6/opencart-3.0.3.6.zip"
+    download_url: "https://github.com/opencart/opencart/releases/download/3.0.3.7/opencart-3.0.3.7.zip"
     documentroot: "upload"
   
   chinese:
