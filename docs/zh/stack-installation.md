@@ -19,7 +19,7 @@
    ![oc1](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/oc3.png)
 4. 安装成功后，系统提示“删除安装目录”
    ![oc1](https://libs.websoft9.com/Websoft9/DocsPicture/en/opencart/oc4.png)
-5. 请记得通过SFTP工具删除安装目录（*/data/wwwroot/opencart/install*）
+5. 请记得通过SFTP工具删除安装目录（*/data/wwwroot/opencart/upload/install*）
 6. 安装成功，可以分别体验商城前台和后台
 
 > 需要了解更多 OpenCart 的使用，请参考官方文档：[OpenCart Docs](http://docs.opencart.com)
