@@ -57,3 +57,7 @@
 
   - name: restart php-fpm
     service: name=php-fpm state=restarted
+
+- name: Check opencart version
+  shell: >
+    sudo echo "opencart version:" $(cat /data/wwwroot/opencart/upload/admin/index.php  |grep VERSION |cut -d"'" -f4) |sudo tee -a /data/logs/install_version.txt  
